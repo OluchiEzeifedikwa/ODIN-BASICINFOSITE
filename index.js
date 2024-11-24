@@ -40,13 +40,13 @@ fs.writeFile('404.html','!', err => {
 
 
 
-fs.writeFile('index.js','', err => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log('index.js Created');
-    }
-})
+// fs.writeFile('index.js','', err => {
+//     if (err) {
+//         console.error(err);
+//     } else {
+//         console.log('index.js Created');
+//     }
+// })
 
 
 fs.writeFile('.env', '', err => {
