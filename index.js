@@ -1,52 +1,13 @@
 const fs = require('fs');
 const http = require('node:http');
+const path = require('path');
 const url = require('url');
 require("dotenv").config();
 const dotenv = require("dotenv").config();
 
 
-fs.writeFile('index.html','!', err => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log('index.html Created');
-    }
-})
 
 
-fs.writeFile('about.html','!', err => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log('about.html Created');
-    }
-})
-
-fs.writeFile('contact-me.html','!', err => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log('contact-me.html Created');
-    }
-})
-
-fs.writeFile('404.html','!', err => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log('404.html Created');
-    }
-})
-
-
-
-// fs.writeFile('index.js','', err => {
-//     if (err) {
-//         console.error(err);
-//     } else {
-//         console.log('index.js Created');
-//     }
-// })
 
 
 fs.writeFile('.env', '', err => {
@@ -68,11 +29,32 @@ fs.writeFile('.gitignore', '', err => {
 
 
 const server = http.createServer((req, res) => {
-    res.writeHead(200, {'Content-Type': 'Application/json'})
-    res.end(JSON.stringify(
-        {data: 'Hello WOrld'}
-    ))
 
+    if (req.url === '/') {
+        fs.readFile(path.join(__dirname, 'public', 'index.html'), (err, content) => {
+            if (err) throw err;
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end(content);
+        })
+    }
+
+    if (req.url === '/about') {
+        fs.readFile(path.join(__dirname, 'public', 'about.html'), (err, content) => {
+            if (err) throw err;
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end(content);
+        })
+    }
+
+    if (req.url === '/contact') {
+        fs.readFile(path.join(__dirname, 'public', 'contact-me.html'), (err, content) => {
+            if (err) throw err;
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end(content);
+        })
+    }
 })
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log(`server listening on ${PORT}`)
 
-server.listen(8000);
+);
