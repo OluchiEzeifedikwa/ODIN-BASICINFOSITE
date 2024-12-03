@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 
-fs.mkdir(path.join(__dirname, '/test'), {}, err => {
-    if(err) throw err;
-    console.log('Test Folder created');
-});
+// fs.mkdir(path.join(__dirname, '/test'), {}, err => {
+//     if(err) throw err;
+//     console.log('Test Folder created');
+// });
